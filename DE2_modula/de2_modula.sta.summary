@@ -1,0 +1,93 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : -1.532
+TNS   : -76.136
+
+Type  : Slow Model Setup 'CLK_50'
+Slack : -1.023
+TNS   : -13.936
+
+Type  : Slow Model Setup 'aud_clk_gen_r00:inst7|lrck_reg'
+Slack : -0.566
+TNS   : -4.555
+
+Type  : Slow Model Hold 'CLK_50'
+Slack : -1.873
+TNS   : -27.094
+
+Type  : Slow Model Hold 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : -0.127
+TNS   : -0.127
+
+Type  : Slow Model Hold 'aud_clk_gen_r00:inst7|lrck_reg'
+Slack : -0.011
+TNS   : -0.021
+
+Type  : Slow Model Recovery 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : -0.791
+TNS   : -0.791
+
+Type  : Slow Model Removal 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : 1.466
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'aud_clk_gen_r00:inst7|lrck_reg'
+Slack : -0.500
+TNS   : -23.000
+
+Type  : Slow Model Minimum Pulse Width 'CLK_50'
+Slack : 8.077
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : 26.142
+TNS   : 0.000
+
+Type  : Fast Model Setup 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : -0.838
+TNS   : -42.609
+
+Type  : Fast Model Setup 'CLK_50'
+Slack : 0.111
+TNS   : 0.000
+
+Type  : Fast Model Setup 'aud_clk_gen_r00:inst7|lrck_reg'
+Slack : 0.211
+TNS   : 0.000
+
+Type  : Fast Model Hold 'CLK_50'
+Slack : -1.373
+TNS   : -23.359
+
+Type  : Fast Model Hold 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : 0.048
+TNS   : 0.000
+
+Type  : Fast Model Hold 'aud_clk_gen_r00:inst7|lrck_reg'
+Slack : 0.066
+TNS   : 0.000
+
+Type  : Fast Model Recovery 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : 0.550
+TNS   : 0.000
+
+Type  : Fast Model Removal 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : 0.779
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'aud_clk_gen_r00:inst7|lrck_reg'
+Slack : -0.500
+TNS   : -23.000
+
+Type  : Fast Model Minimum Pulse Width 'CLK_50'
+Slack : 7.981
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'inst7|pll_18432_inst|altpll_component|pll|clk[0]'
+Slack : 26.142
+TNS   : 0.000
+
+------------------------------------------------------------

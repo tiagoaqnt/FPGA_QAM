@@ -1,0 +1,16 @@
+Fitter Status : Successful - Mon Jun 22 22:30:39 2026
+Quartus II Version : 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition
+Revision Name : DE2_demodula
+Top-level Entity Name : DE2_demodula
+Family : Cyclone II
+Device : EP2C35F672C6
+Timing Models : Final
+Total logic elements : 589 / 33,216 ( 2 % )
+    Total combinational functions : 486 / 33,216 ( 1 % )
+    Dedicated logic registers : 408 / 33,216 ( 1 % )
+Total registers : 408
+Total pins : 10 / 475 ( 2 % )
+Total virtual pins : 0
+Total memory bits : 20,010 / 483,840 ( 4 % )
+Embedded Multiplier 9-bit elements : 11 / 70 ( 16 % )
+Total PLLs : 1 / 4 ( 25 % )

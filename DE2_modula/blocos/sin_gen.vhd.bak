@@ -1,0 +1,87 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+--------------------------------------------------------------------------------
+entity sin_gen is
+    port (
+        clk      : in  std_logic;                      -- Clock (ex: 50 MHz)
+        sin_out  : out std_logic_vector(9 downto 0);   -- Saída Seno (-512 a +511)
+        cos_out  : out std_logic_vector(9 downto 0)    -- Saída Cosseno (-512 a +511)
+    );
+end sin_gen;
+
+architecture rtl of sin_gen is
+
+    -- LUT Signed: 32 pontos 
+    type lut_t is array(0 to 31) of signed(9 downto 0);
+
+    constant SIN_LUT : lut_t := (
+        to_signed(0,10),    to_signed(99,10),   to_signed(195,10),  to_signed(284,10),
+        to_signed(361,10),  to_signed(425,10),  to_signed(472,10),  to_signed(501,10),
+        to_signed(511,10),  to_signed(501,10),  to_signed(472,10),  to_signed(425,10),
+        to_signed(361,10),  to_signed(284,10),  to_signed(195,10),  to_signed(99,10),
+        to_signed(0,10),    to_signed(-99,10),  to_signed(-195,10), to_signed(-284,10),
+        to_signed(-361,10), to_signed(-425,10), to_signed(-472,10), to_signed(-501,10),
+        to_signed(-511,10), to_signed(-501,10), to_signed(-472,10), to_signed(-425,10),
+        to_signed(-361,10), to_signed(-284,10), to_signed(-195,10), to_signed(-99,10)
+    );
+
+    -- Definição de Fase: 32 pontos / 4 quadrantes = 16 pontos de defasagem (90 graus)
+    constant PHASE_OFFSET : integer := 8;
+
+    -- Dois contadores independentes (Integer range 0 a 31)
+    
+    -- cont_sin começa no 0
+    signal cont_sin : integer range 0 to 31 := 0;
+    -- cont_cos começa no 8 (Já defasado 90 graus para virar Cosseno)
+    signal cont_cos : integer range 0 to 31 := PHASE_OFFSET;
+    
+    -- CONFIGURAÇÃO DE FREQUÊNCIA
+    -- Para 12.500 Hz (12.5 kHz) exatos a partir de 50 MHz
+    -- Cálculo: 50.000.000 / (32 pontos * 125 ciclos) = 12.500 Hz
+    -- O divisor é N-1, logo 125 - 1 = 124.
+    constant DIV_FACTOR : integer := 124;
+    
+    -- Contador para o divisor de frequência
+    signal tick_cnt : integer range 0 to DIV_FACTOR := 0;
+
+begin
+
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            
+            -- Lógica do Divisor de Frequência
+            if tick_cnt = DIV_FACTOR then
+                tick_cnt <= 0; -- Reseta o divisor e permite o avanço dos ponteiros
+                
+                -- === Avança Ponteiro SENO ===
+                if cont_sin = 31 then
+                    cont_sin <= 0;
+                else
+                    cont_sin <= cont_sin + 1;
+                end if;
+
+                -- === Avança Ponteiro COSSENO ===
+                if cont_cos = 31 then
+                    cont_cos <= 0;
+                else
+                    cont_cos <= cont_cos + 1;
+                end if;
+                
+            else
+                -- Apenas incrementa o tempo de espera
+                tick_cnt <= tick_cnt + 1;
+            end if;
+
+        end if;
+    end process;
+
+    -------------------------------------------------------------------------
+    -- Saídas
+    -------------------------------------------------------------------------
+    sin_out <= std_logic_vector(SIN_LUT(cont_sin));
+    cos_out <= std_logic_vector(SIN_LUT(cont_cos));
+
+end rtl;

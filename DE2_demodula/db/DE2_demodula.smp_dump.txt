@@ -1,0 +1,18 @@
+
+State Machine - |DE2_demodula|i2c_master_r00:inst6|pres_state
+Name pres_state.stop pres_state.nack pres_state.data_rd pres_state.ack4 pres_state.slv_cmd2 pres_state.rep_start pres_state.ack3 pres_state.data_wr pres_state.ack2 pres_state.reg_wr pres_state.ack1 pres_state.wr_cmd pres_state.slv_cmd pres_state.start pres_state.idle 
+pres_state.idle 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+pres_state.start 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+pres_state.slv_cmd 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+pres_state.wr_cmd 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+pres_state.ack1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+pres_state.reg_wr 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+pres_state.ack2 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+pres_state.data_wr 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+pres_state.ack3 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+pres_state.rep_start 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+pres_state.slv_cmd2 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+pres_state.ack4 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+pres_state.data_rd 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+pres_state.nack 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+pres_state.stop 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

@@ -1,0 +1,6 @@
+v1
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,Upsampler_Stereo_10bit:inst2|lpm_mult:Mult0|mult_91t:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1|mult_91t:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,AM_Mixer_Stereo:inst5|lpm_mult:Mult0|mult_31t:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,AM_Mixer_Stereo:inst5|lpm_mult:Mult1|mult_31t:auto_generated|mac_out2,
+PORT_SWAPPING,PORT_SWAPPING_FINISHED,AM_Mixer_Stereo:inst5|lpm_mult:Mult1|mult_31t:auto_generated|mac_mult1,
