@@ -1,0 +1,1323 @@
+Analysis & Synthesis report for de2_modula
+Mon Jul 06 21:46:46 2026
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis DSP Block Usage Summary
+ 10. State Machine - |de2_modula|i2c_master_r00:inst6|pres_state
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated|altsyncram_c7b1:altsyncram2
+ 17. Parameter Settings for User Entity Instance: dac_ser_24bits_r00:inst
+ 18. Parameter Settings for User Entity Instance: aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst|altpll:altpll_component
+ 19. Parameter Settings for User Entity Instance: aud_i2c_config_r01:inst9
+ 20. Parameter Settings for User Entity Instance: i2c_master_r00:inst6
+ 21. Parameter Settings for User Entity Instance: adc_des_24bits_r00:inst10
+ 22. Parameter Settings for User Entity Instance: iir_lpf:inst1
+ 23. Parameter Settings for User Entity Instance: aud_flip_flop_r00:inst14
+ 24. Parameter Settings for User Entity Instance: iir_lpf:inst4
+ 25. Parameter Settings for Inferred Entity Instance: carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0
+ 26. Parameter Settings for Inferred Entity Instance: Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1
+ 27. Parameter Settings for Inferred Entity Instance: AM_Mixer_Stereo:inst15|lpm_mult:Mult0
+ 28. Parameter Settings for Inferred Entity Instance: Upsampler_Stereo_10bit:inst2|lpm_mult:Mult0
+ 29. Parameter Settings for Inferred Entity Instance: AM_Mixer_Stereo:inst15|lpm_mult:Mult1
+ 30. altpll Parameter Settings by Entity Instance
+ 31. altshift_taps Parameter Settings by Entity Instance
+ 32. lpm_mult Parameter Settings by Entity Instance
+ 33. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                      ;
++------------------------------------+----------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Jul 06 21:46:46 2026        ;
+; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
+; Revision Name                      ; de2_modula                                   ;
+; Top-level Entity Name              ; de2_modula                                   ;
+; Family                             ; Cyclone II                                   ;
+; Total logic elements               ; 662                                          ;
+;     Total combinational functions  ; 483                                          ;
+;     Dedicated logic registers      ; 506                                          ;
+; Total registers                    ; 506                                          ;
+; Total pins                         ; 10                                           ;
+; Total virtual pins                 ; 0                                            ;
+; Total memory bits                  ; 9,970                                        ;
+; Embedded Multiplier 9-bit elements ; 8                                            ;
+; Total PLLs                         ; 1                                            ;
++------------------------------------+----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; de2_modula         ; de2_modula         ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use Generated Physical Constraints File                                    ; Off                ;                    ;
+; Synchronization Register Chain Length                                      ; 2                  ; 3                  ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Show Parameter Settings Tables in Synthesis Report                         ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 6      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                        ;
++-----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------+
+; File Name with User-Entered Path  ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                       ;
++-----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------+
+; blocos/iir_lpf.vhd                ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/iir_lpf.vhd                ;
+; blocos/carrier_phase_shift_90.vhd ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/carrier_phase_shift_90.vhd ;
+; blocos/align_left_24b.vhd         ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/align_left_24b.vhd         ;
+; blocos/pll_18432.vhd              ; yes             ; User Wizard-Generated File         ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/pll_18432.vhd              ;
+; de2_modula.bdf                    ; yes             ; User Block Diagram/Schematic File  ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/de2_modula.bdf                    ;
+; blocos/adc_des_24bits_r00.vhd     ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/adc_des_24bits_r00.vhd     ;
+; blocos/aud_clk_gen_r00.vhd        ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/aud_clk_gen_r00.vhd        ;
+; blocos/aud_i2c_config_r00.vhd     ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/aud_i2c_config_r00.vhd     ;
+; blocos/dac_ser_24bits_r00.vhd     ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/dac_ser_24bits_r00.vhd     ;
+; blocos/i2c_master_r00.vhd         ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/i2c_master_r00.vhd         ;
+; blocos/aud_flip_flop_r00.vhd      ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/aud_flip_flop_r00.vhd      ;
+; blocos/Upsampler_Stereo_10bit.vhd ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/Upsampler_Stereo_10bit.vhd ;
+; blocos/AM_Mixer_Stereo.vhd        ; yes             ; User VHDL File                     ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/blocos/AM_Mixer_Stereo.vhd        ;
+; altpll.tdf                        ; yes             ; Megafunction                       ; c:/altera/91sp2/quartus/libraries/megafunctions/altpll.tdf                         ;
+; altshift_taps.tdf                 ; yes             ; Megafunction                       ; c:/altera/91sp2/quartus/libraries/megafunctions/altshift_taps.tdf                  ;
+; db/shift_taps_ejm.tdf             ; yes             ; Auto-Generated Megafunction        ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/db/shift_taps_ejm.tdf             ;
+; db/altsyncram_c7b1.tdf            ; yes             ; Auto-Generated Megafunction        ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/db/altsyncram_c7b1.tdf            ;
+; db/cntr_ppf.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/db/cntr_ppf.tdf                   ;
+; db/cmpr_ldc.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/db/cmpr_ldc.tdf                   ;
+; db/cntr_f9h.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/db/cntr_f9h.tdf                   ;
+; lpm_mult.tdf                      ; yes             ; Megafunction                       ; c:/altera/91sp2/quartus/libraries/megafunctions/lpm_mult.tdf                       ;
+; db/mult_91t.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/db/mult_91t.tdf                   ;
+; db/mult_31t.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/Users/1323018/Downloads/DE2_modula/DE2_modula/db/mult_31t.tdf                   ;
++-----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary          ;
++---------------------------------------------+--------+
+; Resource                                    ; Usage  ;
++---------------------------------------------+--------+
+; Estimated Total logic elements              ; 662    ;
+;                                             ;        ;
+; Total combinational functions               ; 483    ;
+; Logic element usage by number of LUT inputs ;        ;
+;     -- 4 input functions                    ; 90     ;
+;     -- 3 input functions                    ; 277    ;
+;     -- <=2 input functions                  ; 116    ;
+;                                             ;        ;
+; Logic elements by mode                      ;        ;
+;     -- normal mode                          ; 206    ;
+;     -- arithmetic mode                      ; 277    ;
+;                                             ;        ;
+; Total registers                             ; 506    ;
+;     -- Dedicated logic registers            ; 506    ;
+;     -- I/O registers                        ; 0      ;
+;                                             ;        ;
+; I/O pins                                    ; 10     ;
+; Total memory bits                           ; 9970   ;
+; Embedded Multiplier 9-bit elements          ; 8      ;
+; Total PLLs                                  ; 1      ;
+; Maximum fan-out node                        ; CLK_50 ;
+; Maximum fan-out                             ; 363    ;
+; Total fan-out                               ; 3189   ;
+; Average fan-out                             ; 3.13   ;
++---------------------------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                         ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                  ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |de2_modula                               ; 483 (1)           ; 506 (0)      ; 9970        ; 8            ; 0       ; 4         ; 10   ; 0            ; |de2_modula                                                                                                                          ; work         ;
+;    |AM_Mixer_Stereo:inst15|               ; 20 (20)           ; 20 (20)      ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |de2_modula|AM_Mixer_Stereo:inst15                                                                                                   ;              ;
+;       |lpm_mult:Mult0|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |de2_modula|AM_Mixer_Stereo:inst15|lpm_mult:Mult0                                                                                    ;              ;
+;          |mult_31t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |de2_modula|AM_Mixer_Stereo:inst15|lpm_mult:Mult0|mult_31t:auto_generated                                                            ;              ;
+;       |lpm_mult:Mult1|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |de2_modula|AM_Mixer_Stereo:inst15|lpm_mult:Mult1                                                                                    ;              ;
+;          |mult_31t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |de2_modula|AM_Mixer_Stereo:inst15|lpm_mult:Mult1|mult_31t:auto_generated                                                            ;              ;
+;    |Upsampler_Stereo_10bit:inst2|         ; 101 (101)         ; 152 (152)    ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |de2_modula|Upsampler_Stereo_10bit:inst2                                                                                             ;              ;
+;       |lpm_mult:Mult0|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |de2_modula|Upsampler_Stereo_10bit:inst2|lpm_mult:Mult0                                                                              ;              ;
+;          |mult_91t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |de2_modula|Upsampler_Stereo_10bit:inst2|lpm_mult:Mult0|mult_91t:auto_generated                                                      ;              ;
+;       |lpm_mult:Mult1|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |de2_modula|Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1                                                                              ;              ;
+;          |mult_91t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |de2_modula|Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1|mult_91t:auto_generated                                                      ;              ;
+;    |adc_des_24bits_r00:inst10|            ; 15 (15)           ; 57 (57)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|adc_des_24bits_r00:inst10                                                                                                ;              ;
+;    |aud_clk_gen_r00:inst7|                ; 13 (13)           ; 11 (11)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|aud_clk_gen_r00:inst7                                                                                                    ;              ;
+;       |pll_18432:pll_18432_inst|          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst                                                                           ;              ;
+;          |altpll:altpll_component|        ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst|altpll:altpll_component                                                   ;              ;
+;    |aud_flip_flop_r00:inst14|             ; 19 (19)           ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|aud_flip_flop_r00:inst14                                                                                                 ;              ;
+;    |aud_i2c_config_r01:inst9|             ; 18 (18)           ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|aud_i2c_config_r01:inst9                                                                                                 ;              ;
+;    |carrier_phase_shift_90:inst16|        ; 26 (0)            ; 31 (10)      ; 9970        ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|carrier_phase_shift_90:inst16                                                                                            ;              ;
+;       |altshift_taps:buffer_reg_rtl_0|    ; 26 (0)            ; 21 (0)       ; 9970        ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0                                                             ;              ;
+;          |shift_taps_ejm:auto_generated|  ; 26 (0)            ; 21 (1)       ; 9970        ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated                               ;              ;
+;             |altsyncram_c7b1:altsyncram2| ; 0 (0)             ; 0 (0)        ; 9970        ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated|altsyncram_c7b1:altsyncram2   ;              ;
+;             |cntr_f9h:cntr3|              ; 11 (11)           ; 10 (10)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated|cntr_f9h:cntr3                ;              ;
+;             |cntr_ppf:cntr1|              ; 15 (12)           ; 10 (10)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated|cntr_ppf:cntr1                ;              ;
+;                |cmpr_ldc:cmpr7|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated|cntr_ppf:cntr1|cmpr_ldc:cmpr7 ;              ;
+;    |dac_ser_24bits_r00:inst|              ; 45 (45)           ; 63 (63)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|dac_ser_24bits_r00:inst                                                                                                  ;              ;
+;    |i2c_master_r00:inst6|                 ; 61 (61)           ; 41 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|i2c_master_r00:inst6                                                                                                     ;              ;
+;    |iir_lpf:inst1|                        ; 82 (82)           ; 52 (52)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|iir_lpf:inst1                                                                                                            ;              ;
+;    |iir_lpf:inst4|                        ; 82 (82)           ; 52 (52)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |de2_modula|iir_lpf:inst4                                                                                                            ;              ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                      ;
++-----------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                                                              ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++-----------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated|altsyncram_c7b1:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 997          ; 10           ; 997          ; 10           ; 9970 ; None ;
++-----------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 4           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 8           ;
+; Signed Embedded Multipliers           ; 4           ;
+; Unsigned Embedded Multipliers         ; 0           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |de2_modula|i2c_master_r00:inst6|pres_state                                                                                                                                                                                                                                                               ;
++----------------------+-----------------+-----------------+--------------------+-----------------+---------------------+----------------------+-----------------+--------------------+-----------------+-------------------+-----------------+-------------------+--------------------+------------------+-----------------+
+; Name                 ; pres_state.stop ; pres_state.nack ; pres_state.data_rd ; pres_state.ack4 ; pres_state.slv_cmd2 ; pres_state.rep_start ; pres_state.ack3 ; pres_state.data_wr ; pres_state.ack2 ; pres_state.reg_wr ; pres_state.ack1 ; pres_state.wr_cmd ; pres_state.slv_cmd ; pres_state.start ; pres_state.idle ;
++----------------------+-----------------+-----------------+--------------------+-----------------+---------------------+----------------------+-----------------+--------------------+-----------------+-------------------+-----------------+-------------------+--------------------+------------------+-----------------+
+; pres_state.idle      ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 0               ;
+; pres_state.start     ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 1                ; 1               ;
+; pres_state.slv_cmd   ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 1                  ; 0                ; 1               ;
+; pres_state.wr_cmd    ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 1                 ; 0                  ; 0                ; 1               ;
+; pres_state.ack1      ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 1               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.reg_wr    ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 1                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.ack2      ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 1               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.data_wr   ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 1                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.ack3      ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 1               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.rep_start ; 0               ; 0               ; 0                  ; 0               ; 0                   ; 1                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.slv_cmd2  ; 0               ; 0               ; 0                  ; 0               ; 1                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.ack4      ; 0               ; 0               ; 0                  ; 1               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.data_rd   ; 0               ; 0               ; 1                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.nack      ; 0               ; 1               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
+; pres_state.stop      ; 1               ; 0               ; 0                  ; 0               ; 0                   ; 0                    ; 0               ; 0                  ; 0               ; 0                 ; 0               ; 0                 ; 0                  ; 0                ; 1               ;
++----------------------+-----------------+-----------------+--------------------+-----------------+---------------------+----------------------+-----------------+--------------------+-----------------+-------------------+-----------------+-------------------+--------------------+------------------+-----------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                ;
++------------------------------------------------+--------------------------------------------------+
+; Register name                                  ; Reason for Removal                               ;
++------------------------------------------------+--------------------------------------------------+
+; i2c_master_r00:inst6|slv_addr_reg[0..1,3,6..7] ; Stuck at GND due to stuck port data_in           ;
+; i2c_master_r00:inst6|reg_addr_reg[5..7]        ; Stuck at GND due to stuck port data_in           ;
+; i2c_master_r00:inst6|data_wr_reg[7]            ; Stuck at GND due to stuck port data_in           ;
+; dac_ser_24bits_r00:inst|l_aud_reg[0..13]       ; Stuck at GND due to stuck port data_in           ;
+; dac_ser_24bits_r00:inst|r_aud_reg[0..13]       ; Stuck at GND due to stuck port data_in           ;
+; i2c_master_r00:inst6|slv_addr_reg[2]           ; Merged with i2c_master_r00:inst6|slv_addr_reg[4] ;
+; i2c_master_r00:inst6|slv_addr_reg[4]           ; Merged with i2c_master_r00:inst6|slv_addr_reg[5] ;
+; dac_ser_24bits_r00:inst|bclk_prev              ; Merged with adc_des_24bits_r00:inst10|bclk_prev  ;
+; dac_ser_24bits_r00:inst|lrck_prev              ; Merged with adc_des_24bits_r00:inst10|lrck_prev  ;
+; dac_ser_24bits_r00:inst|shft_reg[0..13]        ; Stuck at GND due to stuck port data_in           ;
+; i2c_master_r00:inst6|data_wr_reg[5]            ; Merged with i2c_master_r00:inst6|data_wr_reg[6]  ;
+; i2c_master_r00:inst6|pres_state.rep_start      ; Stuck at GND due to stuck port data_in           ;
+; i2c_master_r00:inst6|pres_state.slv_cmd2       ; Stuck at GND due to stuck port data_in           ;
+; i2c_master_r00:inst6|pres_state.ack4           ; Stuck at GND due to stuck port data_in           ;
+; i2c_master_r00:inst6|pres_state.data_rd        ; Stuck at GND due to stuck port data_in           ;
+; i2c_master_r00:inst6|pres_state.nack           ; Stuck at GND due to stuck port data_in           ;
+; Total Number of Removed Registers = 61         ;                                                  ;
++------------------------------------------------+--------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                ;
++---------------------------------------+---------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal        ; Registers Removed due to This Register ;
++---------------------------------------+---------------------------+----------------------------------------+
+; dac_ser_24bits_r00:inst|r_aud_reg[13] ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[13]   ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[12] ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[12]   ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[11] ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[11]   ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[10] ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[10]   ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[9]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[9]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[8]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[8]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[7]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[7]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[6]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[6]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[5]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[5]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[4]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[4]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[3]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[3]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[2]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[2]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[1]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[1]    ;
+;                                       ; due to stuck port data_in ;                                        ;
+; dac_ser_24bits_r00:inst|r_aud_reg[0]  ; Stuck at GND              ; dac_ser_24bits_r00:inst|shft_reg[0]    ;
+;                                       ; due to stuck port data_in ;                                        ;
++---------------------------------------+---------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 506   ;
+; Number of registers using Synchronous Clear  ; 15    ;
+; Number of registers using Synchronous Load   ; 10    ;
+; Number of registers using Asynchronous Clear ; 301   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 249   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                                               ;
++--------------------------------------------------------------------------------------------------+---------+
+; Inverted Register                                                                                ; Fan out ;
++--------------------------------------------------------------------------------------------------+---------+
+; i2c_master_r00:inst6|busy_flag                                                                   ; 6       ;
+; i2c_master_r00:inst6|scl_o                                                                       ; 3       ;
+; i2c_master_r00:inst6|sda_o                                                                       ; 2       ;
+; i2c_master_r00:inst6|bit_cnt[2]                                                                  ; 10      ;
+; i2c_master_r00:inst6|bit_cnt[0]                                                                  ; 14      ;
+; i2c_master_r00:inst6|bit_cnt[1]                                                                  ; 14      ;
+; carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated|dffe4 ; 10      ;
+; Total number of inverted registers = 7                                                           ;         ;
++--------------------------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
+; 3:1                ; 23 bits   ; 46 LEs        ; 23 LEs               ; 23 LEs                 ; Yes        ; |de2_modula|dac_ser_24bits_r00:inst|shft_reg[31]         ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |de2_modula|dac_ser_24bits_r00:inst|shft_reg[50]         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |de2_modula|aud_clk_gen_r00:inst7|bclk_cnt[0]            ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |de2_modula|adc_des_24bits_r00:inst10|count[4]           ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |de2_modula|Upsampler_Stereo_10bit:inst2|o_dac_data_L[3] ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |de2_modula|Upsampler_Stereo_10bit:inst2|o_dac_data_R[1] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0|shift_taps_ejm:auto_generated|altsyncram_c7b1:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                              ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                               ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dac_ser_24bits_r00:inst ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; mode           ; 1     ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst|altpll:altpll_component ;
++-------------------------------+-------------------+-----------------------------------------------------------------+
+; Parameter Name                ; Value             ; Type                                                            ;
++-------------------------------+-------------------+-----------------------------------------------------------------+
+; OPERATION_MODE                ; NORMAL            ; Untyped                                                         ;
+; PLL_TYPE                      ; AUTO              ; Untyped                                                         ;
+; QUALIFY_CONF_DONE             ; OFF               ; Untyped                                                         ;
+; COMPENSATE_CLOCK              ; CLK0              ; Untyped                                                         ;
+; SCAN_CHAIN                    ; LONG              ; Untyped                                                         ;
+; PRIMARY_CLOCK                 ; INCLK0            ; Untyped                                                         ;
+; INCLK0_INPUT_FREQUENCY        ; 20000             ; Signed Integer                                                  ;
+; INCLK1_INPUT_FREQUENCY        ; 0                 ; Untyped                                                         ;
+; GATE_LOCK_SIGNAL              ; NO                ; Untyped                                                         ;
+; GATE_LOCK_COUNTER             ; 0                 ; Untyped                                                         ;
+; LOCK_HIGH                     ; 1                 ; Untyped                                                         ;
+; LOCK_LOW                      ; 1                 ; Untyped                                                         ;
+; VALID_LOCK_MULTIPLIER         ; 1                 ; Signed Integer                                                  ;
+; INVALID_LOCK_MULTIPLIER       ; 5                 ; Signed Integer                                                  ;
+; SWITCH_OVER_ON_LOSSCLK        ; OFF               ; Untyped                                                         ;
+; SWITCH_OVER_ON_GATED_LOCK     ; OFF               ; Untyped                                                         ;
+; ENABLE_SWITCH_OVER_COUNTER    ; OFF               ; Untyped                                                         ;
+; SKIP_VCO                      ; OFF               ; Untyped                                                         ;
+; SWITCH_OVER_COUNTER           ; 0                 ; Untyped                                                         ;
+; SWITCH_OVER_TYPE              ; AUTO              ; Untyped                                                         ;
+; FEEDBACK_SOURCE               ; EXTCLK0           ; Untyped                                                         ;
+; BANDWIDTH                     ; 0                 ; Untyped                                                         ;
+; BANDWIDTH_TYPE                ; AUTO              ; Untyped                                                         ;
+; SPREAD_FREQUENCY              ; 0                 ; Untyped                                                         ;
+; DOWN_SPREAD                   ; 0                 ; Untyped                                                         ;
+; SELF_RESET_ON_GATED_LOSS_LOCK ; OFF               ; Untyped                                                         ;
+; SELF_RESET_ON_LOSS_LOCK       ; OFF               ; Untyped                                                         ;
+; CLK9_MULTIPLY_BY              ; 0                 ; Untyped                                                         ;
+; CLK8_MULTIPLY_BY              ; 0                 ; Untyped                                                         ;
+; CLK7_MULTIPLY_BY              ; 0                 ; Untyped                                                         ;
+; CLK6_MULTIPLY_BY              ; 0                 ; Untyped                                                         ;
+; CLK5_MULTIPLY_BY              ; 1                 ; Untyped                                                         ;
+; CLK4_MULTIPLY_BY              ; 1                 ; Untyped                                                         ;
+; CLK3_MULTIPLY_BY              ; 1                 ; Untyped                                                         ;
+; CLK2_MULTIPLY_BY              ; 1                 ; Untyped                                                         ;
+; CLK1_MULTIPLY_BY              ; 1                 ; Untyped                                                         ;
+; CLK0_MULTIPLY_BY              ; 7                 ; Signed Integer                                                  ;
+; CLK9_DIVIDE_BY                ; 0                 ; Untyped                                                         ;
+; CLK8_DIVIDE_BY                ; 0                 ; Untyped                                                         ;
+; CLK7_DIVIDE_BY                ; 0                 ; Untyped                                                         ;
+; CLK6_DIVIDE_BY                ; 0                 ; Untyped                                                         ;
+; CLK5_DIVIDE_BY                ; 1                 ; Untyped                                                         ;
+; CLK4_DIVIDE_BY                ; 1                 ; Untyped                                                         ;
+; CLK3_DIVIDE_BY                ; 1                 ; Untyped                                                         ;
+; CLK2_DIVIDE_BY                ; 1                 ; Untyped                                                         ;
+; CLK1_DIVIDE_BY                ; 1                 ; Untyped                                                         ;
+; CLK0_DIVIDE_BY                ; 19                ; Signed Integer                                                  ;
+; CLK9_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK8_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK7_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK6_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK5_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK4_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK3_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK2_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK1_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK0_PHASE_SHIFT              ; 0                 ; Untyped                                                         ;
+; CLK5_TIME_DELAY               ; 0                 ; Untyped                                                         ;
+; CLK4_TIME_DELAY               ; 0                 ; Untyped                                                         ;
+; CLK3_TIME_DELAY               ; 0                 ; Untyped                                                         ;
+; CLK2_TIME_DELAY               ; 0                 ; Untyped                                                         ;
+; CLK1_TIME_DELAY               ; 0                 ; Untyped                                                         ;
+; CLK0_TIME_DELAY               ; 0                 ; Untyped                                                         ;
+; CLK9_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK8_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK7_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK6_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK5_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK4_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK3_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK2_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK1_DUTY_CYCLE               ; 50                ; Untyped                                                         ;
+; CLK0_DUTY_CYCLE               ; 50                ; Signed Integer                                                  ;
+; CLK9_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK8_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK7_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK6_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK5_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK4_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK3_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK2_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK1_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK0_USE_EVEN_COUNTER_MODE    ; OFF               ; Untyped                                                         ;
+; CLK9_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK8_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK7_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK6_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK5_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK4_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK3_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK2_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK1_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; CLK0_USE_EVEN_COUNTER_VALUE   ; OFF               ; Untyped                                                         ;
+; LOCK_WINDOW_UI                ;  0.05             ; Untyped                                                         ;
+; LOCK_WINDOW_UI_BITS           ; UNUSED            ; Untyped                                                         ;
+; VCO_RANGE_DETECTOR_LOW_BITS   ; UNUSED            ; Untyped                                                         ;
+; VCO_RANGE_DETECTOR_HIGH_BITS  ; UNUSED            ; Untyped                                                         ;
+; DPA_MULTIPLY_BY               ; 0                 ; Untyped                                                         ;
+; DPA_DIVIDE_BY                 ; 1                 ; Untyped                                                         ;
+; DPA_DIVIDER                   ; 0                 ; Untyped                                                         ;
+; EXTCLK3_MULTIPLY_BY           ; 1                 ; Untyped                                                         ;
+; EXTCLK2_MULTIPLY_BY           ; 1                 ; Untyped                                                         ;
+; EXTCLK1_MULTIPLY_BY           ; 1                 ; Untyped                                                         ;
+; EXTCLK0_MULTIPLY_BY           ; 1                 ; Untyped                                                         ;
+; EXTCLK3_DIVIDE_BY             ; 1                 ; Untyped                                                         ;
+; EXTCLK2_DIVIDE_BY             ; 1                 ; Untyped                                                         ;
+; EXTCLK1_DIVIDE_BY             ; 1                 ; Untyped                                                         ;
+; EXTCLK0_DIVIDE_BY             ; 1                 ; Untyped                                                         ;
+; EXTCLK3_PHASE_SHIFT           ; 0                 ; Untyped                                                         ;
+; EXTCLK2_PHASE_SHIFT           ; 0                 ; Untyped                                                         ;
+; EXTCLK1_PHASE_SHIFT           ; 0                 ; Untyped                                                         ;
+; EXTCLK0_PHASE_SHIFT           ; 0                 ; Untyped                                                         ;
+; EXTCLK3_TIME_DELAY            ; 0                 ; Untyped                                                         ;
+; EXTCLK2_TIME_DELAY            ; 0                 ; Untyped                                                         ;
+; EXTCLK1_TIME_DELAY            ; 0                 ; Untyped                                                         ;
+; EXTCLK0_TIME_DELAY            ; 0                 ; Untyped                                                         ;
+; EXTCLK3_DUTY_CYCLE            ; 50                ; Untyped                                                         ;
+; EXTCLK2_DUTY_CYCLE            ; 50                ; Untyped                                                         ;
+; EXTCLK1_DUTY_CYCLE            ; 50                ; Untyped                                                         ;
+; EXTCLK0_DUTY_CYCLE            ; 50                ; Untyped                                                         ;
+; VCO_MULTIPLY_BY               ; 0                 ; Untyped                                                         ;
+; VCO_DIVIDE_BY                 ; 0                 ; Untyped                                                         ;
+; SCLKOUT0_PHASE_SHIFT          ; 0                 ; Untyped                                                         ;
+; SCLKOUT1_PHASE_SHIFT          ; 0                 ; Untyped                                                         ;
+; VCO_MIN                       ; 0                 ; Untyped                                                         ;
+; VCO_MAX                       ; 0                 ; Untyped                                                         ;
+; VCO_CENTER                    ; 0                 ; Untyped                                                         ;
+; PFD_MIN                       ; 0                 ; Untyped                                                         ;
+; PFD_MAX                       ; 0                 ; Untyped                                                         ;
+; M_INITIAL                     ; 0                 ; Untyped                                                         ;
+; M                             ; 0                 ; Untyped                                                         ;
+; N                             ; 1                 ; Untyped                                                         ;
+; M2                            ; 1                 ; Untyped                                                         ;
+; N2                            ; 1                 ; Untyped                                                         ;
+; SS                            ; 1                 ; Untyped                                                         ;
+; C0_HIGH                       ; 0                 ; Untyped                                                         ;
+; C1_HIGH                       ; 0                 ; Untyped                                                         ;
+; C2_HIGH                       ; 0                 ; Untyped                                                         ;
+; C3_HIGH                       ; 0                 ; Untyped                                                         ;
+; C4_HIGH                       ; 0                 ; Untyped                                                         ;
+; C5_HIGH                       ; 0                 ; Untyped                                                         ;
+; C6_HIGH                       ; 0                 ; Untyped                                                         ;
+; C7_HIGH                       ; 0                 ; Untyped                                                         ;
+; C8_HIGH                       ; 0                 ; Untyped                                                         ;
+; C9_HIGH                       ; 0                 ; Untyped                                                         ;
+; C0_LOW                        ; 0                 ; Untyped                                                         ;
+; C1_LOW                        ; 0                 ; Untyped                                                         ;
+; C2_LOW                        ; 0                 ; Untyped                                                         ;
+; C3_LOW                        ; 0                 ; Untyped                                                         ;
+; C4_LOW                        ; 0                 ; Untyped                                                         ;
+; C5_LOW                        ; 0                 ; Untyped                                                         ;
+; C6_LOW                        ; 0                 ; Untyped                                                         ;
+; C7_LOW                        ; 0                 ; Untyped                                                         ;
+; C8_LOW                        ; 0                 ; Untyped                                                         ;
+; C9_LOW                        ; 0                 ; Untyped                                                         ;
+; C0_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C1_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C2_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C3_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C4_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C5_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C6_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C7_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C8_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C9_INITIAL                    ; 0                 ; Untyped                                                         ;
+; C0_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C1_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C2_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C3_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C4_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C5_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C6_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C7_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C8_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C9_MODE                       ; BYPASS            ; Untyped                                                         ;
+; C0_PH                         ; 0                 ; Untyped                                                         ;
+; C1_PH                         ; 0                 ; Untyped                                                         ;
+; C2_PH                         ; 0                 ; Untyped                                                         ;
+; C3_PH                         ; 0                 ; Untyped                                                         ;
+; C4_PH                         ; 0                 ; Untyped                                                         ;
+; C5_PH                         ; 0                 ; Untyped                                                         ;
+; C6_PH                         ; 0                 ; Untyped                                                         ;
+; C7_PH                         ; 0                 ; Untyped                                                         ;
+; C8_PH                         ; 0                 ; Untyped                                                         ;
+; C9_PH                         ; 0                 ; Untyped                                                         ;
+; L0_HIGH                       ; 1                 ; Untyped                                                         ;
+; L1_HIGH                       ; 1                 ; Untyped                                                         ;
+; G0_HIGH                       ; 1                 ; Untyped                                                         ;
+; G1_HIGH                       ; 1                 ; Untyped                                                         ;
+; G2_HIGH                       ; 1                 ; Untyped                                                         ;
+; G3_HIGH                       ; 1                 ; Untyped                                                         ;
+; E0_HIGH                       ; 1                 ; Untyped                                                         ;
+; E1_HIGH                       ; 1                 ; Untyped                                                         ;
+; E2_HIGH                       ; 1                 ; Untyped                                                         ;
+; E3_HIGH                       ; 1                 ; Untyped                                                         ;
+; L0_LOW                        ; 1                 ; Untyped                                                         ;
+; L1_LOW                        ; 1                 ; Untyped                                                         ;
+; G0_LOW                        ; 1                 ; Untyped                                                         ;
+; G1_LOW                        ; 1                 ; Untyped                                                         ;
+; G2_LOW                        ; 1                 ; Untyped                                                         ;
+; G3_LOW                        ; 1                 ; Untyped                                                         ;
+; E0_LOW                        ; 1                 ; Untyped                                                         ;
+; E1_LOW                        ; 1                 ; Untyped                                                         ;
+; E2_LOW                        ; 1                 ; Untyped                                                         ;
+; E3_LOW                        ; 1                 ; Untyped                                                         ;
+; L0_INITIAL                    ; 1                 ; Untyped                                                         ;
+; L1_INITIAL                    ; 1                 ; Untyped                                                         ;
+; G0_INITIAL                    ; 1                 ; Untyped                                                         ;
+; G1_INITIAL                    ; 1                 ; Untyped                                                         ;
+; G2_INITIAL                    ; 1                 ; Untyped                                                         ;
+; G3_INITIAL                    ; 1                 ; Untyped                                                         ;
+; E0_INITIAL                    ; 1                 ; Untyped                                                         ;
+; E1_INITIAL                    ; 1                 ; Untyped                                                         ;
+; E2_INITIAL                    ; 1                 ; Untyped                                                         ;
+; E3_INITIAL                    ; 1                 ; Untyped                                                         ;
+; L0_MODE                       ; BYPASS            ; Untyped                                                         ;
+; L1_MODE                       ; BYPASS            ; Untyped                                                         ;
+; G0_MODE                       ; BYPASS            ; Untyped                                                         ;
+; G1_MODE                       ; BYPASS            ; Untyped                                                         ;
+; G2_MODE                       ; BYPASS            ; Untyped                                                         ;
+; G3_MODE                       ; BYPASS            ; Untyped                                                         ;
+; E0_MODE                       ; BYPASS            ; Untyped                                                         ;
+; E1_MODE                       ; BYPASS            ; Untyped                                                         ;
+; E2_MODE                       ; BYPASS            ; Untyped                                                         ;
+; E3_MODE                       ; BYPASS            ; Untyped                                                         ;
+; L0_PH                         ; 0                 ; Untyped                                                         ;
+; L1_PH                         ; 0                 ; Untyped                                                         ;
+; G0_PH                         ; 0                 ; Untyped                                                         ;
+; G1_PH                         ; 0                 ; Untyped                                                         ;
+; G2_PH                         ; 0                 ; Untyped                                                         ;
+; G3_PH                         ; 0                 ; Untyped                                                         ;
+; E0_PH                         ; 0                 ; Untyped                                                         ;
+; E1_PH                         ; 0                 ; Untyped                                                         ;
+; E2_PH                         ; 0                 ; Untyped                                                         ;
+; E3_PH                         ; 0                 ; Untyped                                                         ;
+; M_PH                          ; 0                 ; Untyped                                                         ;
+; C1_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; C2_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; C3_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; C4_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; C5_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; C6_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; C7_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; C8_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; C9_USE_CASC_IN                ; OFF               ; Untyped                                                         ;
+; CLK0_COUNTER                  ; G0                ; Untyped                                                         ;
+; CLK1_COUNTER                  ; G0                ; Untyped                                                         ;
+; CLK2_COUNTER                  ; G0                ; Untyped                                                         ;
+; CLK3_COUNTER                  ; G0                ; Untyped                                                         ;
+; CLK4_COUNTER                  ; G0                ; Untyped                                                         ;
+; CLK5_COUNTER                  ; G0                ; Untyped                                                         ;
+; CLK6_COUNTER                  ; E0                ; Untyped                                                         ;
+; CLK7_COUNTER                  ; E1                ; Untyped                                                         ;
+; CLK8_COUNTER                  ; E2                ; Untyped                                                         ;
+; CLK9_COUNTER                  ; E3                ; Untyped                                                         ;
+; L0_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; L1_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; G0_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; G1_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; G2_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; G3_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; E0_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; E1_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; E2_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; E3_TIME_DELAY                 ; 0                 ; Untyped                                                         ;
+; M_TIME_DELAY                  ; 0                 ; Untyped                                                         ;
+; N_TIME_DELAY                  ; 0                 ; Untyped                                                         ;
+; EXTCLK3_COUNTER               ; E3                ; Untyped                                                         ;
+; EXTCLK2_COUNTER               ; E2                ; Untyped                                                         ;
+; EXTCLK1_COUNTER               ; E1                ; Untyped                                                         ;
+; EXTCLK0_COUNTER               ; E0                ; Untyped                                                         ;
+; ENABLE0_COUNTER               ; L0                ; Untyped                                                         ;
+; ENABLE1_COUNTER               ; L0                ; Untyped                                                         ;
+; CHARGE_PUMP_CURRENT           ; 2                 ; Untyped                                                         ;
+; LOOP_FILTER_R                 ;  1.000000         ; Untyped                                                         ;
+; LOOP_FILTER_C                 ; 5                 ; Untyped                                                         ;
+; CHARGE_PUMP_CURRENT_BITS      ; 9999              ; Untyped                                                         ;
+; LOOP_FILTER_R_BITS            ; 9999              ; Untyped                                                         ;
+; LOOP_FILTER_C_BITS            ; 9999              ; Untyped                                                         ;
+; VCO_POST_SCALE                ; 0                 ; Untyped                                                         ;
+; CLK2_OUTPUT_FREQUENCY         ; 0                 ; Untyped                                                         ;
+; CLK1_OUTPUT_FREQUENCY         ; 0                 ; Untyped                                                         ;
+; CLK0_OUTPUT_FREQUENCY         ; 0                 ; Untyped                                                         ;
+; INTENDED_DEVICE_FAMILY        ; Cyclone II        ; Untyped                                                         ;
+; PORT_CLKENA0                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKENA1                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKENA2                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKENA3                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKENA4                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKENA5                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_EXTCLKENA0               ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_EXTCLKENA1               ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_EXTCLKENA2               ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_EXTCLKENA3               ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_EXTCLK0                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_EXTCLK1                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_EXTCLK2                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_EXTCLK3                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKBAD0                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKBAD1                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK0                     ; PORT_USED         ; Untyped                                                         ;
+; PORT_CLK1                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK2                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK3                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK4                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK5                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK6                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK7                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK8                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLK9                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCANDATA                 ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCANDATAOUT              ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCANDONE                 ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCLKOUT1                 ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_SCLKOUT0                 ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_ACTIVECLOCK              ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKLOSS                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_INCLK1                   ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_INCLK0                   ; PORT_USED         ; Untyped                                                         ;
+; PORT_FBIN                     ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_PLLENA                   ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_CLKSWITCH                ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_ARESET                   ; PORT_USED         ; Untyped                                                         ;
+; PORT_PFDENA                   ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCANCLK                  ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCANACLR                 ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCANREAD                 ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCANWRITE                ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_ENABLE0                  ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_ENABLE1                  ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_LOCKED                   ; PORT_USED         ; Untyped                                                         ;
+; PORT_CONFIGUPDATE             ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_FBOUT                    ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_PHASEDONE                ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_PHASESTEP                ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_PHASEUPDOWN              ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_SCANCLKENA               ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_PHASECOUNTERSELECT       ; PORT_UNUSED       ; Untyped                                                         ;
+; PORT_VCOOVERRANGE             ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; PORT_VCOUNDERRANGE            ; PORT_CONNECTIVITY ; Untyped                                                         ;
+; M_TEST_SOURCE                 ; 5                 ; Untyped                                                         ;
+; C0_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C1_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C2_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C3_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C4_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C5_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C6_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C7_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C8_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; C9_TEST_SOURCE                ; 5                 ; Untyped                                                         ;
+; CBXI_PARAMETER                ; NOTHING           ; Untyped                                                         ;
+; VCO_FREQUENCY_CONTROL         ; AUTO              ; Untyped                                                         ;
+; VCO_PHASE_SHIFT_STEP          ; 0                 ; Untyped                                                         ;
+; WIDTH_CLOCK                   ; 6                 ; Untyped                                                         ;
+; WIDTH_PHASECOUNTERSELECT      ; 4                 ; Untyped                                                         ;
+; USING_FBMIMICBIDIR_PORT       ; OFF               ; Untyped                                                         ;
+; DEVICE_FAMILY                 ; Cyclone II        ; Untyped                                                         ;
+; SCAN_CHAIN_MIF_FILE           ; UNUSED            ; Untyped                                                         ;
+; SIM_GATE_LOCK_DEVICE_BEHAVIOR ; OFF               ; Untyped                                                         ;
+; AUTO_CARRY_CHAINS             ; ON                ; AUTO_CARRY                                                      ;
+; IGNORE_CARRY_BUFFERS          ; OFF               ; IGNORE_CARRY                                                    ;
+; AUTO_CASCADE_CHAINS           ; ON                ; AUTO_CASCADE                                                    ;
+; IGNORE_CASCADE_BUFFERS        ; OFF               ; IGNORE_CASCADE                                                  ;
++-------------------------------+-------------------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: aud_i2c_config_r01:inst9 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; bosr           ; '1'   ; Enumerated                                   ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i2c_master_r00:inst6 ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; input_clk      ; 50000 ; Signed Integer                           ;
+; bus_clk        ; 400   ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: adc_des_24bits_r00:inst10 ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; mode           ; 1     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: iir_lpf:inst1 ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; k              ; 10    ; Signed Integer                    ;
+; g              ; 4     ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: aud_flip_flop_r00:inst14 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; dout_width     ; 10    ; Signed Integer                               ;
+; phase          ; inv   ; String                                       ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: iir_lpf:inst4 ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; k              ; 10    ; Signed Integer                    ;
+; g              ; 4     ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0 ;
++----------------+----------------+-----------------------------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                                        ;
++----------------+----------------+-----------------------------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                                     ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                                     ;
+; TAP_DISTANCE   ; 999            ; Untyped                                                                     ;
+; WIDTH          ; 10             ; Untyped                                                                     ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                                     ;
+; CBXI_PARAMETER ; shift_taps_ejm ; Untyped                                                                     ;
++----------------+----------------+-----------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1 ;
++------------------------------------------------+------------+--------------------------------+
+; Parameter Name                                 ; Value      ; Type                           ;
++------------------------------------------------+------------+--------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                     ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY                   ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE                   ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE                 ;
+; LPM_WIDTHA                                     ; 12         ; Untyped                        ;
+; LPM_WIDTHB                                     ; 11         ; Untyped                        ;
+; LPM_WIDTHP                                     ; 23         ; Untyped                        ;
+; LPM_WIDTHR                                     ; 23         ; Untyped                        ;
+; LPM_WIDTHS                                     ; 1          ; Untyped                        ;
+; LPM_REPRESENTATION                             ; SIGNED     ; Untyped                        ;
+; LPM_PIPELINE                                   ; 0          ; Untyped                        ;
+; LATENCY                                        ; 0          ; Untyped                        ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                        ;
+; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                        ;
+; USE_EAB                                        ; OFF        ; Untyped                        ;
+; MAXIMIZE_SPEED                                 ; 6          ; Untyped                        ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                        ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped                        ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K            ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                        ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                        ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                        ;
+; CBXI_PARAMETER                                 ; mult_91t   ; Untyped                        ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                        ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                        ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                        ;
++------------------------------------------------+------------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: AM_Mixer_Stereo:inst15|lpm_mult:Mult0 ;
++------------------------------------------------+------------+--------------------------+
+; Parameter Name                                 ; Value      ; Type                     ;
++------------------------------------------------+------------+--------------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY               ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY             ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE             ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE           ;
+; LPM_WIDTHA                                     ; 10         ; Untyped                  ;
+; LPM_WIDTHB                                     ; 10         ; Untyped                  ;
+; LPM_WIDTHP                                     ; 20         ; Untyped                  ;
+; LPM_WIDTHR                                     ; 20         ; Untyped                  ;
+; LPM_WIDTHS                                     ; 1          ; Untyped                  ;
+; LPM_REPRESENTATION                             ; SIGNED     ; Untyped                  ;
+; LPM_PIPELINE                                   ; 0          ; Untyped                  ;
+; LATENCY                                        ; 0          ; Untyped                  ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                  ;
+; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                  ;
+; USE_EAB                                        ; OFF        ; Untyped                  ;
+; MAXIMIZE_SPEED                                 ; 6          ; Untyped                  ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                  ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped                  ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K      ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                  ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                  ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                  ;
+; CBXI_PARAMETER                                 ; mult_31t   ; Untyped                  ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                  ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                  ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                  ;
++------------------------------------------------+------------+--------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Upsampler_Stereo_10bit:inst2|lpm_mult:Mult0 ;
++------------------------------------------------+------------+--------------------------------+
+; Parameter Name                                 ; Value      ; Type                           ;
++------------------------------------------------+------------+--------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                     ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY                   ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE                   ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE                 ;
+; LPM_WIDTHA                                     ; 12         ; Untyped                        ;
+; LPM_WIDTHB                                     ; 11         ; Untyped                        ;
+; LPM_WIDTHP                                     ; 23         ; Untyped                        ;
+; LPM_WIDTHR                                     ; 23         ; Untyped                        ;
+; LPM_WIDTHS                                     ; 1          ; Untyped                        ;
+; LPM_REPRESENTATION                             ; SIGNED     ; Untyped                        ;
+; LPM_PIPELINE                                   ; 0          ; Untyped                        ;
+; LATENCY                                        ; 0          ; Untyped                        ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                        ;
+; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                        ;
+; USE_EAB                                        ; OFF        ; Untyped                        ;
+; MAXIMIZE_SPEED                                 ; 6          ; Untyped                        ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                        ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped                        ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K            ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                        ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                        ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                        ;
+; CBXI_PARAMETER                                 ; mult_91t   ; Untyped                        ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                        ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                        ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                        ;
++------------------------------------------------+------------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: AM_Mixer_Stereo:inst15|lpm_mult:Mult1 ;
++------------------------------------------------+------------+--------------------------+
+; Parameter Name                                 ; Value      ; Type                     ;
++------------------------------------------------+------------+--------------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY               ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY             ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE             ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE           ;
+; LPM_WIDTHA                                     ; 10         ; Untyped                  ;
+; LPM_WIDTHB                                     ; 10         ; Untyped                  ;
+; LPM_WIDTHP                                     ; 20         ; Untyped                  ;
+; LPM_WIDTHR                                     ; 20         ; Untyped                  ;
+; LPM_WIDTHS                                     ; 1          ; Untyped                  ;
+; LPM_REPRESENTATION                             ; SIGNED     ; Untyped                  ;
+; LPM_PIPELINE                                   ; 0          ; Untyped                  ;
+; LATENCY                                        ; 0          ; Untyped                  ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                  ;
+; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                  ;
+; USE_EAB                                        ; OFF        ; Untyped                  ;
+; MAXIMIZE_SPEED                                 ; 6          ; Untyped                  ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                  ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped                  ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K      ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                  ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                  ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                  ;
+; CBXI_PARAMETER                                 ; mult_31t   ; Untyped                  ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                  ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                  ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                  ;
++------------------------------------------------+------------+--------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; altpll Parameter Settings by Entity Instance                                                           ;
++-------------------------------+------------------------------------------------------------------------+
+; Name                          ; Value                                                                  ;
++-------------------------------+------------------------------------------------------------------------+
+; Number of entity instances    ; 1                                                                      ;
+; Entity Instance               ; aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst|altpll:altpll_component ;
+;     -- OPERATION_MODE         ; NORMAL                                                                 ;
+;     -- PLL_TYPE               ; AUTO                                                                   ;
+;     -- PRIMARY_CLOCK          ; INCLK0                                                                 ;
+;     -- INCLK0_INPUT_FREQUENCY ; 20000                                                                  ;
+;     -- INCLK1_INPUT_FREQUENCY ; 0                                                                      ;
+;     -- VCO_MULTIPLY_BY        ; 0                                                                      ;
+;     -- VCO_DIVIDE_BY          ; 0                                                                      ;
++-------------------------------+------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------+
+; altshift_taps Parameter Settings by Entity Instance                                       ;
++----------------------------+--------------------------------------------------------------+
+; Name                       ; Value                                                        ;
++----------------------------+--------------------------------------------------------------+
+; Number of entity instances ; 1                                                            ;
+; Entity Instance            ; carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0 ;
+;     -- NUMBER_OF_TAPS      ; 1                                                            ;
+;     -- TAP_DISTANCE        ; 999                                                          ;
+;     -- WIDTH               ; 10                                                           ;
++----------------------------+--------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                                      ;
++---------------------------------------+---------------------------------------------+
+; Name                                  ; Value                                       ;
++---------------------------------------+---------------------------------------------+
+; Number of entity instances            ; 4                                           ;
+; Entity Instance                       ; Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1 ;
+;     -- LPM_WIDTHA                     ; 12                                          ;
+;     -- LPM_WIDTHB                     ; 11                                          ;
+;     -- LPM_WIDTHP                     ; 23                                          ;
+;     -- LPM_REPRESENTATION             ; SIGNED                                      ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                          ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                          ;
+;     -- USE_EAB                        ; OFF                                         ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                        ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                          ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                          ;
+; Entity Instance                       ; AM_Mixer_Stereo:inst15|lpm_mult:Mult0       ;
+;     -- LPM_WIDTHA                     ; 10                                          ;
+;     -- LPM_WIDTHB                     ; 10                                          ;
+;     -- LPM_WIDTHP                     ; 20                                          ;
+;     -- LPM_REPRESENTATION             ; SIGNED                                      ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                          ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                          ;
+;     -- USE_EAB                        ; OFF                                         ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                        ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                          ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                          ;
+; Entity Instance                       ; Upsampler_Stereo_10bit:inst2|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 12                                          ;
+;     -- LPM_WIDTHB                     ; 11                                          ;
+;     -- LPM_WIDTHP                     ; 23                                          ;
+;     -- LPM_REPRESENTATION             ; SIGNED                                      ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                          ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                          ;
+;     -- USE_EAB                        ; OFF                                         ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                        ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                          ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                          ;
+; Entity Instance                       ; AM_Mixer_Stereo:inst15|lpm_mult:Mult1       ;
+;     -- LPM_WIDTHA                     ; 10                                          ;
+;     -- LPM_WIDTHB                     ; 10                                          ;
+;     -- LPM_WIDTHP                     ; 20                                          ;
+;     -- LPM_REPRESENTATION             ; SIGNED                                      ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                          ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                          ;
+;     -- USE_EAB                        ; OFF                                         ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                        ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                          ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                          ;
++---------------------------------------+---------------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Mon Jul 06 21:46:43 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de2_modula -c de2_modula
+Info: Found 2 design units, including 1 entities, in source file blocos/iir_lpf.vhd
+    Info: Found design unit 1: iir_lpf-rtl
+    Info: Found entity 1: iir_lpf
+Info: Found 2 design units, including 1 entities, in source file blocos/carrier_phase_shift_90.vhd
+    Info: Found design unit 1: carrier_phase_shift_90-rtl
+    Info: Found entity 1: carrier_phase_shift_90
+Info: Found 2 design units, including 1 entities, in source file blocos/align_left_24b.vhd
+    Info: Found design unit 1: align_left_24b-rtl
+    Info: Found entity 1: align_left_24b
+Info: Found 2 design units, including 1 entities, in source file blocos/pll_18432.vhd
+    Info: Found design unit 1: pll_18432-SYN
+    Info: Found entity 1: pll_18432
+Info: Found 2 design units, including 1 entities, in source file blocos/soma_canais_dac.vhd
+    Info: Found design unit 1: soma_canais_dac-rtl
+    Info: Found entity 1: soma_canais_dac
+Info: Found 1 design units, including 1 entities, in source file de2_modula.bdf
+    Info: Found entity 1: de2_modula
+Info: Found 2 design units, including 1 entities, in source file blocos/adc_des_24bits_r00.vhd
+    Info: Found design unit 1: adc_des_24bits_r00-arch
+    Info: Found entity 1: adc_des_24bits_r00
+Info: Found 2 design units, including 1 entities, in source file blocos/aud_clk_gen_r00.vhd
+    Info: Found design unit 1: aud_clk_gen_r00-arch
+    Info: Found entity 1: aud_clk_gen_r00
+Info: Found 2 design units, including 1 entities, in source file blocos/aud_i2c_config_r00.vhd
+    Info: Found design unit 1: aud_i2c_config_r01-arch
+    Info: Found entity 1: aud_i2c_config_r01
+Info: Found 2 design units, including 1 entities, in source file blocos/dac_ser_24bits_r00.vhd
+    Info: Found design unit 1: dac_ser_24bits_r00-serializer
+    Info: Found entity 1: dac_ser_24bits_r00
+Info: Found 2 design units, including 1 entities, in source file blocos/i2c_master_r00.vhd
+    Info: Found design unit 1: i2c_master_r00-arch
+    Info: Found entity 1: i2c_master_r00
+Info: Found 2 design units, including 1 entities, in source file blocos/sin_gen.vhd
+    Info: Found design unit 1: sin_gen-rtl
+    Info: Found entity 1: sin_gen
+Info: Found 2 design units, including 1 entities, in source file blocos/am_mixer.vhd
+    Info: Found design unit 1: AM_Mixer-rtl
+    Info: Found entity 1: AM_Mixer
+Info: Found 2 design units, including 1 entities, in source file blocos/aud_flip_flop_r00.vhd
+    Info: Found design unit 1: aud_flip_flop_r00-arch
+    Info: Found entity 1: aud_flip_flop_r00
+Info: Found 2 design units, including 1 entities, in source file blocos/upsampler_stereo_10bit.vhd
+    Info: Found design unit 1: Upsampler_Stereo_10bit-Behavioral
+    Info: Found entity 1: Upsampler_Stereo_10bit
+Info: Found 2 design units, including 1 entities, in source file blocos/am_mixer_stereo.vhd
+    Info: Found design unit 1: AM_Mixer_Stereo-rtl
+    Info: Found entity 1: AM_Mixer_Stereo
+Info: Elaborating entity "de2_modula" for the top level hierarchy
+Info: Elaborating entity "dac_ser_24bits_r00" for hierarchy "dac_ser_24bits_r00:inst"
+Info: Elaborating entity "aud_clk_gen_r00" for hierarchy "aud_clk_gen_r00:inst7"
+Info: Elaborating entity "pll_18432" for hierarchy "aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst"
+Info: Elaborating entity "altpll" for hierarchy "aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst|altpll:altpll_component"
+Info: Elaborated megafunction instantiation "aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst|altpll:altpll_component"
+Info: Instantiated megafunction "aud_clk_gen_r00:inst7|pll_18432:pll_18432_inst|altpll:altpll_component" with the following parameter:
+    Info: Parameter "clk0_divide_by" = "19"
+    Info: Parameter "clk0_duty_cycle" = "50"
+    Info: Parameter "clk0_multiply_by" = "7"
+    Info: Parameter "clk0_phase_shift" = "0"
+    Info: Parameter "compensate_clock" = "CLK0"
+    Info: Parameter "gate_lock_signal" = "NO"
+    Info: Parameter "inclk0_input_frequency" = "20000"
+    Info: Parameter "intended_device_family" = "Cyclone II"
+    Info: Parameter "invalid_lock_multiplier" = "5"
+    Info: Parameter "lpm_hint" = "CBX_MODULE_PREFIX=pll_18432"
+    Info: Parameter "lpm_type" = "altpll"
+    Info: Parameter "operation_mode" = "NORMAL"
+    Info: Parameter "port_activeclock" = "PORT_UNUSED"
+    Info: Parameter "port_areset" = "PORT_USED"
+    Info: Parameter "port_clkbad0" = "PORT_UNUSED"
+    Info: Parameter "port_clkbad1" = "PORT_UNUSED"
+    Info: Parameter "port_clkloss" = "PORT_UNUSED"
+    Info: Parameter "port_clkswitch" = "PORT_UNUSED"
+    Info: Parameter "port_configupdate" = "PORT_UNUSED"
+    Info: Parameter "port_fbin" = "PORT_UNUSED"
+    Info: Parameter "port_inclk0" = "PORT_USED"
+    Info: Parameter "port_inclk1" = "PORT_UNUSED"
+    Info: Parameter "port_locked" = "PORT_USED"
+    Info: Parameter "port_pfdena" = "PORT_UNUSED"
+    Info: Parameter "port_phasecounterselect" = "PORT_UNUSED"
+    Info: Parameter "port_phasedone" = "PORT_UNUSED"
+    Info: Parameter "port_phasestep" = "PORT_UNUSED"
+    Info: Parameter "port_phaseupdown" = "PORT_UNUSED"
+    Info: Parameter "port_pllena" = "PORT_UNUSED"
+    Info: Parameter "port_scanaclr" = "PORT_UNUSED"
+    Info: Parameter "port_scanclk" = "PORT_UNUSED"
+    Info: Parameter "port_scanclkena" = "PORT_UNUSED"
+    Info: Parameter "port_scandata" = "PORT_UNUSED"
+    Info: Parameter "port_scandataout" = "PORT_UNUSED"
+    Info: Parameter "port_scandone" = "PORT_UNUSED"
+    Info: Parameter "port_scanread" = "PORT_UNUSED"
+    Info: Parameter "port_scanwrite" = "PORT_UNUSED"
+    Info: Parameter "port_clk0" = "PORT_USED"
+    Info: Parameter "port_clk1" = "PORT_UNUSED"
+    Info: Parameter "port_clk2" = "PORT_UNUSED"
+    Info: Parameter "port_clk3" = "PORT_UNUSED"
+    Info: Parameter "port_clk4" = "PORT_UNUSED"
+    Info: Parameter "port_clk5" = "PORT_UNUSED"
+    Info: Parameter "port_clkena0" = "PORT_UNUSED"
+    Info: Parameter "port_clkena1" = "PORT_UNUSED"
+    Info: Parameter "port_clkena2" = "PORT_UNUSED"
+    Info: Parameter "port_clkena3" = "PORT_UNUSED"
+    Info: Parameter "port_clkena4" = "PORT_UNUSED"
+    Info: Parameter "port_clkena5" = "PORT_UNUSED"
+    Info: Parameter "port_extclk0" = "PORT_UNUSED"
+    Info: Parameter "port_extclk1" = "PORT_UNUSED"
+    Info: Parameter "port_extclk2" = "PORT_UNUSED"
+    Info: Parameter "port_extclk3" = "PORT_UNUSED"
+    Info: Parameter "valid_lock_multiplier" = "1"
+Info: Elaborating entity "aud_i2c_config_r01" for hierarchy "aud_i2c_config_r01:inst9"
+Info: Elaborating entity "i2c_master_r00" for hierarchy "i2c_master_r00:inst6"
+Info: Elaborating entity "adc_des_24bits_r00" for hierarchy "adc_des_24bits_r00:inst10"
+Info: Elaborating entity "align_left_24b" for hierarchy "align_left_24b:inst3"
+Info: Elaborating entity "iir_lpf" for hierarchy "iir_lpf:inst1"
+Info: Elaborating entity "AM_Mixer_Stereo" for hierarchy "AM_Mixer_Stereo:inst15"
+Info: Elaborating entity "Upsampler_Stereo_10bit" for hierarchy "Upsampler_Stereo_10bit:inst2"
+Warning (10037): Verilog HDL or VHDL warning at Upsampler_Stereo_10bit.vhd(144): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at Upsampler_Stereo_10bit.vhd(164): conditional expression evaluates to a constant
+Info: Elaborating entity "aud_flip_flop_r00" for hierarchy "aud_flip_flop_r00:inst14"
+Info: Elaborating entity "carrier_phase_shift_90" for hierarchy "carrier_phase_shift_90:inst16"
+Info: Inferred 1 megafunctions from design logic
+    Info: Inferred altshift_taps megafunction from the following design logic: "carrier_phase_shift_90:inst16|buffer_reg[0][9]~0"
+        Info: Parameter NUMBER_OF_TAPS set to 1
+        Info: Parameter TAP_DISTANCE set to 999
+        Info: Parameter WIDTH set to 10
+Info: Inferred 4 megafunctions from design logic
+    Info: Inferred multiplier megafunction ("lpm_mult") from the following logic: "Upsampler_Stereo_10bit:inst2|Mult1"
+    Info: Inferred multiplier megafunction ("lpm_mult") from the following logic: "AM_Mixer_Stereo:inst15|Mult0"
+    Info: Inferred multiplier megafunction ("lpm_mult") from the following logic: "Upsampler_Stereo_10bit:inst2|Mult0"
+    Info: Inferred multiplier megafunction ("lpm_mult") from the following logic: "AM_Mixer_Stereo:inst15|Mult1"
+Info: Elaborated megafunction instantiation "carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0"
+Info: Instantiated megafunction "carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0" with the following parameter:
+    Info: Parameter "NUMBER_OF_TAPS" = "1"
+    Info: Parameter "TAP_DISTANCE" = "999"
+    Info: Parameter "WIDTH" = "10"
+Info: Found 1 design units, including 1 entities, in source file db/shift_taps_ejm.tdf
+    Info: Found entity 1: shift_taps_ejm
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_c7b1.tdf
+    Info: Found entity 1: altsyncram_c7b1
+Info: Found 1 design units, including 1 entities, in source file db/cntr_ppf.tdf
+    Info: Found entity 1: cntr_ppf
+Info: Found 1 design units, including 1 entities, in source file db/cmpr_ldc.tdf
+    Info: Found entity 1: cmpr_ldc
+Info: Found 1 design units, including 1 entities, in source file db/cntr_f9h.tdf
+    Info: Found entity 1: cntr_f9h
+Info: Elaborated megafunction instantiation "Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1"
+Info: Instantiated megafunction "Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1" with the following parameter:
+    Info: Parameter "LPM_WIDTHA" = "12"
+    Info: Parameter "LPM_WIDTHB" = "11"
+    Info: Parameter "LPM_WIDTHP" = "23"
+    Info: Parameter "LPM_WIDTHR" = "23"
+    Info: Parameter "LPM_WIDTHS" = "1"
+    Info: Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info: Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info: Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info: Parameter "MAXIMIZE_SPEED" = "6"
+Info: Found 1 design units, including 1 entities, in source file db/mult_91t.tdf
+    Info: Found entity 1: mult_91t
+Info: Elaborated megafunction instantiation "AM_Mixer_Stereo:inst15|lpm_mult:Mult0"
+Info: Instantiated megafunction "AM_Mixer_Stereo:inst15|lpm_mult:Mult0" with the following parameter:
+    Info: Parameter "LPM_WIDTHA" = "10"
+    Info: Parameter "LPM_WIDTHB" = "10"
+    Info: Parameter "LPM_WIDTHP" = "20"
+    Info: Parameter "LPM_WIDTHR" = "20"
+    Info: Parameter "LPM_WIDTHS" = "1"
+    Info: Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info: Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info: Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info: Parameter "MAXIMIZE_SPEED" = "6"
+Info: Found 1 design units, including 1 entities, in source file db/mult_31t.tdf
+    Info: Found entity 1: mult_31t
+Info: Registers with preset signals will power-up high
+Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Critical Warning: Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register i2c_master_r00:inst6|bit_cnt[0] will power up to High
+    Critical Warning (18010): Register i2c_master_r00:inst6|bit_cnt[1] will power up to High
+    Critical Warning (18010): Register i2c_master_r00:inst6|bit_cnt[2] will power up to High
+Info: Implemented 693 device resources after synthesis - the final resource count might be different
+    Info: Implemented 3 input pins
+    Info: Implemented 5 output pins
+    Info: Implemented 2 bidirectional pins
+    Info: Implemented 664 logic cells
+    Info: Implemented 10 RAM segments
+    Info: Implemented 1 PLLs
+    Info: Implemented 8 DSP elements
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 282 megabytes
+    Info: Processing ended: Mon Jul 06 21:46:46 2026
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
+
+

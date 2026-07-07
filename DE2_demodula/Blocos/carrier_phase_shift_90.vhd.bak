@@ -1,164 +1,33 @@
--- *************************************************************************************************
--- Bloco: carrier_phase_shift_90
---
--- Descrição:
---   Filtro de média móvel com N=2001 taps, projetado para introduzir exatamente
---   90° de defasagem na frequência da portadora de 12,5 kHz com clock de 50 MHz.
---
--- Princípio:
---   A fase de uma média móvel de N taps é linear:
---     f(f) = -p · f · (N-1) / fs
---
---   Para obter f(f0) = -90° = -p/2:
---     N - 1 = fs / (2 · f0)
---     N - 1 = 50.000.000 / (2 × 12.500) = 2000  ?  N = 2001  (inteiro exato ?)
---
---   Isso equivale a atrasar o sinal exatamente T/4 = 20 µs = 1000 amostras
---   de 50 MHz — um quarto do período de 12,5 kHz.
---
---   Resultado:
---     Entrada:  cos(2p·12500·t)
---     Saída:    cos(2p·12500·t - p/2) = sin(2p·12500·t)  ? portadora em quadratura
---
--- Ganho na portadora:
---   |H(f0)| = sin(p/2) / (2001 · sin(p/4000)) ˜ 2/p ˜ 0,637  (-3,92 dB)
---
---   IMPORTANTE: a saída é atenuada por ~0,637 em relação à entrada.
---   O bloco seguinte (multiplicador do canal B) deve compensar esse ganho
---   multiplicando o resultado por p/2 ˜ 1,571, ou equivalentemente
---   usando um fator de escala de 2/p?¹ no acumulador do mixer.
---   A forma mais simples é escalar os bits de saída do mixer (ver comentário
---   no port "data_out" abaixo).
---
--- Implementação:
---   Usa buffer circular de N=2001 amostras e acumulador de soma deslizante:
---     acc[n] = acc[n-1] + x[n] - x[n-N]
---     y[n]   = acc[n] / N
---
---   Divisão por N=2001 (não potência de 2):
---   Como N não é potência de 2, a divisão exata exigiria um divisor de 11 bits.
---   Em vez disso, usamos a aproximação por deslocamento:
---     N = 2001 ˜ 2048 = 2^11  ?  divisão por shift de 11 bits
---   Erro: (2048 - 2001) / 2001 ˜ 2,3%  ?  ganho real ˜ 0,637 × (2001/2048) ˜ 0,622
---   Isso é aceitável pois o ganho já será compensado externamente.
---
---   Alternativamente, pode-se simplesmente NÃO dividir e deixar o acumulador
---   bruto ser escalonado pelos bits selecionados na saída (ver "data_out").
---
--- ENTRADAS:
---   clk       Clock do sistema (50 MHz)
---   nrst      Reset assíncrono ativo baixo
---   data_in   Portadora cos(?ct), 10 bits signed (-512 a +511)
---
--- SAÍDAS:
---   data_out  Portadora defasada ˜ sin(?ct), 10 bits signed
---             Amplitude ˜ 0,622 × amplitude de entrada após divisão por 2^11.
---             Para compensar: escalar por ˜ 1,608 no bloco seguinte,
---             ou simplesmente aceitar a diferença de ganho entre canais I e Q
---             e corrigir no bloco "FIR Ganho Compensado" do canal direto.
---
--- Uso de recursos (Cyclone II):
---   RAM: 2001 × 10 bits = 20.010 bits ? ~5 blocos M4K (BRAM)
---   Acumulador: 21 bits signed
---   Sem multiplicadores — apenas somadores
--- *************************************************************************************************
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity carrier_phase_shift_90 is
     port (
-        clk      : in  std_logic;                    -- Clock 50 MHz
-        nrst     : in  std_logic;                    -- Reset assíncrono ativo baixo
-        data_in  : in  std_logic_vector(9 downto 0); -- cos(?ct), 10 bits signed
-        data_out : out std_logic_vector(9 downto 0)  -- sin(?ct) ˜ cos(?ct - 90°)
+        clk      : in  std_logic; 
+        nrst     : in  std_logic;
+        data_in  : in  std_logic_vector(9 downto 0);
+        data_out : out std_logic_vector(9 downto 0)
     );
 end entity;
 
 architecture rtl of carrier_phase_shift_90 is
-
-    -- -----------------------------------------------------------------------
-    -- Parâmetros
-    -- N = 2001 ? defasagem exata de 90° em 12,5 kHz com fs = 50 MHz
-    -- -----------------------------------------------------------------------
-    constant N       : integer := 2001;
-    constant LOG2_N  : integer := 11;    -- 2^11 = 2048 ˜ 2001 (para a divisão)
-
-    -- -----------------------------------------------------------------------
-    -- Buffer circular: N=2001 entradas de 10 bits
-    -- Infere como BRAM M4K no Cyclone II (~5 blocos)
-    -- -----------------------------------------------------------------------
-    type ram_t is array(0 to N-1) of signed(9 downto 0);
-    signal ram : ram_t := (others => (others => '0'));
-
-    -- Ponteiro circular (0 a N-1)
-    signal ptr : integer range 0 to N-1 := 0;
-
-    -- -----------------------------------------------------------------------
-    -- Acumulador de soma deslizante
-    -- Faixa máxima: N × 511 = 2001 × 511 = 1.022.511
-    -- log2(1.022.511) ˜ 19,96 ? precisa de 21 bits signed
-    -- -----------------------------------------------------------------------
-    signal acc     : signed(20 downto 0) := (others => '0');
-
-    -- Amostras em pipeline (1 ciclo de latência da leitura do RAM)
-    signal oldest  : signed(9 downto 0) := (others => '0');
-    signal data_d  : signed(9 downto 0) := (others => '0');
-
+    -- Shift Register de 1000 posições para atrasar 20us (90 graus)
+    type delay_line is array (0 to 999) of std_logic_vector(9 downto 0);
+    signal buffer_reg : delay_line := (others => (others => '0'));
 begin
 
     process(clk, nrst)
     begin
         if nrst = '0' then
-            acc    <= (others => '0');
-            ptr    <= 0;
-            oldest <= (others => '0');
-            data_d <= (others => '0');
-
+            buffer_reg <= (others => (others => '0'));
         elsif rising_edge(clk) then
-
-            -- ----------------------------------------------------------------
-            -- Estágio 1: leitura da amostra mais antiga e delay de data_in
-            -- ----------------------------------------------------------------
-            oldest <= ram(ptr);             -- lê amostra mais antiga (old-data)
-            data_d <= signed(data_in);      -- atrasa 1 ciclo para alinhar
-
-            -- Escreve nova amostra (sobrescreve a mais antiga)
-            ram(ptr) <= signed(data_in);
-
-            -- Avança ponteiro circular
-            if ptr = N-1 then
-                ptr <= 0;
-            else
-                ptr <= ptr + 1;
-            end if;
-
-            -- ----------------------------------------------------------------
-            -- Estágio 2: atualiza acumulador
-            --   acc[n] = acc[n-1] + data_in[n-1] - oldest[n-1]
-            -- ----------------------------------------------------------------
-            acc <= acc
-                 + resize(data_d,  21)
-                 - resize(oldest,  21);
-
+            -- Desloca a cada ciclo de 50 MHz
+            buffer_reg <= data_in & buffer_reg(0 to 998);
         end if;
     end process;
 
-    -- -----------------------------------------------------------------------
-    -- Saída: divisão aproximada por 2^11 = 2048 (shift aritmético de 11 bits)
-    --
-    -- acc tem 21 bits (índices 20..0)
-    -- acc >> 11 = acc(20 downto 11) = 10 bits
-    --
-    -- Verificação:
-    --   acc_max = +1.022.511 ? acc(20..11) = 1022511 >> 11 = 499  ? (< 511)
-    --   acc_min = -1.022.511 ? acc(20..11) = -499                  ? (> -512)
-    --
-    -- Ganho resultante: 0,637 × (2001/2048) ˜ 0,622
-    -- A diferença de ganho entre canal direto (1,0) e canal Q (0,622) deve
-    -- ser corrigida no bloco "FIR Ganho Compensado" do diagrama.
-    -- -----------------------------------------------------------------------
-    data_out <= std_logic_vector(acc(20 downto 11));
+    -- A saída é a amostra de 20us atrás
+    data_out <= buffer_reg(999);
 
 end rtl;

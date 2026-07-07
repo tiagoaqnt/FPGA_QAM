@@ -1,0 +1,16 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity ajuste_10b_24b is
+    port(
+        in_10b  : in  std_logic_vector(9 downto 0);
+        out_24b : out std_logic_vector(23 downto 0)
+    );
+end ajuste_10b_24b;
+
+architecture rtl of ajuste_10b_24b is
+begin
+    -- Concatena o sinal de 10 bits com 14 zeros à direita
+    -- Usamos o operador '&' para colar os vetores
+    out_24b <= in_10b & "00000000000000";
+end rtl;

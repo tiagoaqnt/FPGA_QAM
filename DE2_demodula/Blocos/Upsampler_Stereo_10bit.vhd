@@ -154,7 +154,7 @@ begin
     process(r_temp_R)
         variable v_sat_R : signed(9 downto 0);
     begin
-        -- Saturação R
+        -- Saturação Ra
         if r_temp_R > 511 then v_sat_R := to_signed(511, 10);
         elsif r_temp_R < -512 then v_sat_R := to_signed(-512, 10);
         else v_sat_R := resize(r_temp_R, 10);

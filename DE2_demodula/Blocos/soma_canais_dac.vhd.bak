@@ -1,0 +1,31 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity Soma_Canais_DAC is
+    port(
+        clk          : in  std_logic;
+        mixer_in_L   : in  std_logic_vector(9 downto 0);
+        mixer_in_R   : in  std_logic_vector(9 downto 0);
+        
+        -- Saída de 24 bits pronta para o DAC (Canal Esquerdo)
+        -- O canal direito pode ser aterrado ou receber o mesmo sinal
+        aud_out_24b  : out std_logic_vector(23 downto 0) 
+    );
+end Soma_Canais_DAC;
+
+architecture rtl of Soma_Canais_DAC is
+begin
+    process(clk)
+        variable soma_11b : signed(10 downto 0);
+    begin
+        if rising_edge(clk) then
+            -- Redimensionamos para 11 bits e somamos
+            soma_11b := resize(signed(mixer_in_L), 11) + resize(signed(mixer_in_R), 11);
+            
+            -- O CODEC espera 24 bits justificados à esquerda (MSB primeiro).
+            -- Colocamos nossos 11 bits na ponta esquerda e preenchemos o resto com 13 zeros.
+            aud_out_24b <= std_logic_vector(soma_11b) & "0000000000000";
+        end if;
+    end process;
+end rtl;

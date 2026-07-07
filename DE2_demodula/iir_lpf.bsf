@@ -56,6 +56,11 @@ applicable agreement for further details.
 		"10"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"G"
+		"4"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 168 80)(line_width 1))
 	)

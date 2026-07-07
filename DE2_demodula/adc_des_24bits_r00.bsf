@@ -4,7 +4,7 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2010 Altera Corporation
+Copyright (C) 1991-2013 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -20,64 +20,78 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 192 144)
-	(text "adc_des_24bits_r00" (rect 5 0 102 12)(font "Arial" ))
-	(text "inst" (rect 8 112 25 124)(font "Arial" ))
+	(rect 16 16 216 160)
+	(text "adc_des_24bits_r00" (rect 5 0 87 12)(font "Arial" ))
+	(text "inst" (rect 8 128 20 140)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "nrst" (rect 0 0 18 12)(font "Arial" ))
-		(text "nrst" (rect 21 27 39 39)(font "Arial" ))
+		(text "nrst" (rect 0 0 15 12)(font "Arial" ))
+		(text "nrst" (rect 21 27 36 39)(font "Arial" ))
 		(line (pt 0 32)(pt 16 32)(line_width 1))
 	)
 	(port
 		(pt 0 48)
 		(input)
-		(text "mclk_in" (rect 0 0 37 12)(font "Arial" ))
-		(text "mclk_in" (rect 21 43 58 55)(font "Arial" ))
+		(text "mclk_in" (rect 0 0 30 12)(font "Arial" ))
+		(text "mclk_in" (rect 21 43 51 55)(font "Arial" ))
 		(line (pt 0 48)(pt 16 48)(line_width 1))
 	)
 	(port
 		(pt 0 64)
 		(input)
-		(text "bclk_in" (rect 0 0 34 12)(font "Arial" ))
-		(text "bclk_in" (rect 21 59 55 71)(font "Arial" ))
+		(text "bclk_in" (rect 0 0 27 12)(font "Arial" ))
+		(text "bclk_in" (rect 21 59 48 71)(font "Arial" ))
 		(line (pt 0 64)(pt 16 64)(line_width 1))
 	)
 	(port
 		(pt 0 80)
 		(input)
-		(text "lrck_in" (rect 0 0 31 12)(font "Arial" ))
-		(text "lrck_in" (rect 21 75 52 87)(font "Arial" ))
+		(text "lrck_in" (rect 0 0 25 12)(font "Arial" ))
+		(text "lrck_in" (rect 21 75 46 87)(font "Arial" ))
 		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port
 		(pt 0 96)
 		(input)
-		(text "adc_data" (rect 0 0 44 12)(font "Arial" ))
-		(text "adc_data" (rect 21 91 65 103)(font "Arial" ))
+		(text "adc_data" (rect 0 0 36 12)(font "Arial" ))
+		(text "adc_data" (rect 21 91 57 103)(font "Arial" ))
 		(line (pt 0 96)(pt 16 96)(line_width 1))
 	)
 	(port
-		(pt 176 32)
+		(pt 200 32)
 		(output)
-		(text "l_aud_out[23..0]" (rect 0 0 79 12)(font "Arial" ))
-		(text "l_aud_out[23..0]" (rect 76 27 155 39)(font "Arial" ))
-		(line (pt 176 32)(pt 160 32)(line_width 3))
+		(text "l_aud_out[15..0]" (rect 0 0 62 12)(font "Arial" ))
+		(text "l_aud_out[15..0]" (rect 117 27 179 39)(font "Arial" ))
+		(line (pt 200 32)(pt 184 32)(line_width 3))
 	)
 	(port
-		(pt 176 48)
+		(pt 200 48)
 		(output)
-		(text "r_aud_out[23..0]" (rect 0 0 80 12)(font "Arial" ))
-		(text "r_aud_out[23..0]" (rect 75 43 155 55)(font "Arial" ))
-		(line (pt 176 48)(pt 160 48)(line_width 3))
+		(text "r_aud_out[15..0]" (rect 0 0 64 12)(font "Arial" ))
+		(text "r_aud_out[15..0]" (rect 115 43 179 55)(font "Arial" ))
+		(line (pt 200 48)(pt 184 48)(line_width 3))
 	)
 	(port
-		(pt 176 64)
+		(pt 200 64)
 		(output)
-		(text "data_stb" (rect 0 0 42 12)(font "Arial" ))
-		(text "data_stb" (rect 113 59 155 71)(font "Arial" ))
-		(line (pt 176 64)(pt 160 64)(line_width 1))
+		(text "l_vga_out[9..0]" (rect 0 0 60 12)(font "Arial" ))
+		(text "l_vga_out[9..0]" (rect 119 59 179 71)(font "Arial" ))
+		(line (pt 200 64)(pt 184 64)(line_width 3))
+	)
+	(port
+		(pt 200 80)
+		(output)
+		(text "r_vga_out[9..0]" (rect 0 0 62 12)(font "Arial" ))
+		(text "r_vga_out[9..0]" (rect 117 75 179 87)(font "Arial" ))
+		(line (pt 200 80)(pt 184 80)(line_width 3))
+	)
+	(port
+		(pt 200 96)
+		(output)
+		(text "data_stb" (rect 0 0 34 12)(font "Arial" ))
+		(text "data_stb" (rect 145 91 179 103)(font "Arial" ))
+		(line (pt 200 96)(pt 184 96)(line_width 1))
 	)
 	(parameter
 		"mode"
@@ -85,7 +99,7 @@ applicable agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 160 112)(line_width 1))
+		(rectangle (rect 16 16 184 128)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 192 -64 292 16))
+	(annotation_block (parameter)(rect 216 -64 316 16))
 )

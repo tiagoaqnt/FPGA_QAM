@@ -1,0 +1,187 @@
+-- *************************************************************************************************
+-- Bloco: aud_i2c_config_r00
+--
+----------------------------------------------------------------------------------------------------
+-- Descri��o do programa:
+--
+-- 
+--
+----------------------------------------------------------------------------------------------------
+-- ENTRADAS:
+--
+-- nrst			Reset ass�ncrono ativo baixo
+-- clk_50M		Entrada de clock de 50MHz
+-- 
+-- 
+----------------------------------------------------------------------------------------------------
+-- SAIDAS:
+--
+----------------------------------------------------------------------------------------------------
+-- CONFIGURA��O DOS REGISTROS:
+--
+--
+-- Reg. 0Ch - Power down = 62h
+--
+--		Bit	Valor	Nome		Fun��o
+--
+--		7	0		POWEROFF	Device power on
+--		6	1		CLOCKOUTPD	Clock out power down enabled
+--		5	1		OSCPD		Oscilatod power down enabled
+--		4	0		OUTPD		Line out power down disabled
+--		3	0		DACPD		DAC power down disabled
+--		2	0		ADCPD		ADC power down disabled
+--		1	1		MICPD		Mic input and bias power down enabled
+--		0	0		LINEINPD	Line input power down disabled
+---------------------------------------------------------------------------
+-- Reg. 0Eh - Digital audio interface format = 0Ah
+--
+--		Bit	Valor	Nome		Fun��o
+--
+--		7	0		BLCKINV		Don't invert BCLK
+--      6	0		MS			Slave mode enabled 
+--      5	0		LRSWAP		No DAC left rigth swap 
+--      4	0		LRP			Normal DAC LRC phase
+--      3:2	10		IWL[1:0]	Audio data bit length = 24 bits
+--      1:0	10		FORMAT[1:0]	I2S format, MSB first, left-1 justified
+---------------------------------------------------------------------------
+-- Reg. 08h - Analog audio path control = 12h
+--
+--		7:6	00		SIDEATT[1:0] Side tone attenuation = -6dB		
+--		5	0		SIDETONE	Side tone disabled
+--		4	1		DACSEL		Select DAC
+--		3	0		BYPASS		Bypass disabled
+--		2	0		INSEL		Line input select to ADC
+--		1	1		MUTEMIC		Mic input to ADC mute enabled
+--		0	0		MICBOOST	Mic boost disable
+---------------------------------------------------------------------------
+--
+--				
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+
+----------------------------------------------------------------------------------------------------
+-- ******************************************* REVIS�ES ********************************************
+----------------------------------------------------------------------------------------------------
+-- r00: revis�o inicial
+--
+-- Desenvolvido por: F. Garcia
+-- Validado em: 28/03/2019
+----------------------------------------------------------------------------------------------------
+-- r01: adicionado sele��o, via generic, da rela��o entre MCLK e a taxa de amostragem
+--
+-- BOSR = Base over sampling rate (end 10h, bit 2)
+--
+-- BOSR = '0' => MCLK = 256 FS
+-- BOSR = '1' => mclk = 384 fs
+-- Obs.: fs = freq. de amostragem. Tipicamente 48 kHz
+--
+-- Modificado por: F. Garcia
+-- Validado em: 02/12/2025
+--
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+-- ****************************** Declara��o das bibliotecas ***************************************
+----------------------------------------------------------------------------------------------------
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+----------------------------------------------------------------------------------------------------
+-- ****************************************** Entidade *********************************************
+----------------------------------------------------------------------------------------------------
+
+ENTITY aud_i2c_config_r01 IS
+	GENERIC
+		(BOSR : STD_LOGIC := '1'
+	);
+	PORT
+	(
+		-- Entradas:
+		nrst		: IN STD_LOGIC := '1';	-- reset ativo baixo
+		clk_in		: IN STD_LOGIC;			-- Clock
+		busy		: IN STD_LOGIC;			-- Busy que vem do controlador de i2c
+		-- Sa�das:
+		init		: OUT STD_LOGIC;		--
+		rd_nwr		: OUT STD_LOGIC;
+		slv_addr	: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);		-- 
+		reg_addr	: OUT STD_LOGIC_VECTOR(7 DOWNTO 0);		-- 
+		wr_data		: OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+		conf_done	: OUT STD_LOGIC		-- 
+ 	);
+END entity;
+
+----------------------------------------------------------------------------------------------------
+-- ***************************************** Arquitetura *******************************************
+----------------------------------------------------------------------------------------------------
+
+ARCHITECTURE arch OF aud_i2c_config_r01 IS
+	
+	constant wm8731_addr : std_logic_vector(6 downto 0) := "0011010";
+
+	constant rom_size : integer := 8;
+	type rom_type is array(0 to rom_size-1) of std_logic_vector(15 downto 0);
+	constant rom : rom_type := (
+		X"0117",
+		X"0579",
+		X"0812",
+		X"0A00",
+		X"0C00",	-- Power down
+		X"0E0A",	-- Digital audio interface format
+		"00010000000000" & BOSR & '0',
+		X"1201"
+		);
+		
+	signal rom_addr_cnt	: integer range 0 to rom_size;
+	signal init_reg : std_logic;
+	signal conf_done_reg : std_logic;
+
+BEGIN
+
+
+	----------------------------------------------------------------------------
+	-- 
+	----------------------------------------------------------------------------
+	process(nrst, clk_in)
+	begin
+		if nrst = '0' then
+			rom_addr_cnt <= 0;
+			init_reg <= '0';
+			conf_done_reg <= '0';
+		elsif rising_edge(clk_in) then
+			if init_reg = '0' and busy = '0' then
+				if rom_addr_cnt < rom_size then
+					init_reg <= '1';
+				else
+					conf_done_reg <= '1';
+				end if;
+			elsif init_reg = '1' and busy = '1' then
+				init_reg <= '0';
+				rom_addr_cnt <= rom_addr_cnt + 1;
+			end if;
+		end if;
+	end process;
+	----------------------------------------------------------------------------
+	-- Sa�das:
+	----------------------------------------------------------------------------
+	init <= init_reg;
+	rd_nwr <= '0';
+	slv_addr <= wm8731_addr;
+	reg_addr <= rom(rom_addr_cnt)(15 downto 8);
+	wr_data <= rom(rom_addr_cnt)(7 downto 0);
+	conf_done <= conf_done_reg;
+
+END arch;

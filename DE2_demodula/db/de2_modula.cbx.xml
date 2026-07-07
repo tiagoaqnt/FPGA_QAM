@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="de2_modula">
+		<CBX_INST_ENTRY INSTANCE_NAME="|de2_modula|AM_Mixer_Stereo:inst15|lpm_mult:Mult1" CBX_FILE_NAME="mult_31t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|de2_modula|Upsampler_Stereo_10bit:inst2|lpm_mult:Mult1" CBX_FILE_NAME="mult_91t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|de2_modula|AM_Mixer_Stereo:inst15|lpm_mult:Mult0" CBX_FILE_NAME="mult_31t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|de2_modula|Upsampler_Stereo_10bit:inst2|lpm_mult:Mult0" CBX_FILE_NAME="mult_91t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|de2_modula|carrier_phase_shift_90:inst16|altshift_taps:buffer_reg_rtl_0" CBX_FILE_NAME="shift_taps_ejm.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

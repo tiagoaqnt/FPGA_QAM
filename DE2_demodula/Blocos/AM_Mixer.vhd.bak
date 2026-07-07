@@ -1,0 +1,50 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity AM_Mixer is
+    port (
+        clk         : in  std_logic;
+        
+        -- Entradas de Sinal
+        audio_in    : in  std_logic_vector(9 downto 0); -- Vindo do Upsampler
+        carrier_in  : in  std_logic_vector(9 downto 0); -- Vindo do Sine_Generator
+        
+        -- Saídas Físicas (VGA DAC)
+        dac_out     : out std_logic_vector(9 downto 0);
+        vga_clk     : out std_logic;
+        nblank      : out std_logic;
+        nsinc       : out std_logic
+    );
+end AM_Mixer;
+
+architecture rtl of AM_Mixer is
+
+    -- Sinais para multiplicação
+    -- 10 bits * 10 bits = 20 bits de resultado
+    signal mult_result : unsigned(19 downto 0) := (others => '0');
+
+begin
+
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            
+            -- Multiplicação AM
+            -- Audio (Unsigned) * Portadora (Unsigned)
+            mult_result <= unsigned(audio_in) * unsigned(carrier_in);
+
+            -- Normalização
+            -- Dividimos por 1024 pegando os 10 bits superiores (19 downto 10).
+            -- Isso mantém a escala de 0 a 1023 na saída.
+            dac_out <= std_logic_vector(mult_result(19 downto 10));
+
+        end if;
+    end process;
+
+    -- Sinais de Controle VGA fixos
+    vga_clk <= clk;
+    nblank  <= '1'; -- Habilita saída
+    nsinc   <= '0'; -- Sync desativado (usando o canal como DAC genérico)
+
+end rtl;

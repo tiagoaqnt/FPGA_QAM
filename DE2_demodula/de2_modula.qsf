@@ -1,0 +1,101 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2010 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II
+# Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+# Date created = 08:59:56  November 14, 2025
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		de2_modula_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C35F672C6
+set_global_assignment -name TOP_LEVEL_ENTITY de2_modula
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "9.1 SP2"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:59:56  NOVEMBER 14, 2025"
+set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
+set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_blast_fpga
+set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 672
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 6
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_location_assignment PIN_C5 -to AUD_ADCLRCK
+set_location_assignment PIN_B4 -to AUD_BCLK
+set_location_assignment PIN_C6 -to AUD_DACLRCK
+set_location_assignment PIN_B5 -to AUD_ADCDAT
+set_location_assignment PIN_A4 -to AUD_DACDAT
+set_location_assignment PIN_A6 -to I2C_SCL
+set_location_assignment PIN_B6 -to I2C_SDA
+set_location_assignment PIN_G26 -to KEY0
+set_location_assignment PIN_N2 -to CLK_50
+set_location_assignment PIN_A5 -to AUD_MCKL
+set_location_assignment PIN_AE14 -to sw[3]
+set_location_assignment PIN_P25 -to sw[2]
+set_location_assignment PIN_N26 -to sw[1]
+set_location_assignment PIN_N25 -to sw[0]
+set_location_assignment PIN_AF14 -to sw[4]
+set_location_assignment PIN_AD13 -to sw[5]
+set_location_assignment PIN_AC13 -to sw[6]
+set_location_assignment PIN_C13 -to sw[7]
+set_location_assignment PIN_B13 -to sw[8]
+set_location_assignment PIN_A13 -to sw[9]
+set_location_assignment PIN_N1 -to sw[10]
+set_location_assignment PIN_P1 -to sw[11]
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name SIMULATION_MODE FUNCTIONAL
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name MISC_FILE "C:/Users/1323018/Downloads/DE2_modula/DE2_modula/de2_modula.dpf"
+set_global_assignment -name VHDL_FILE blocos/iir_lpf.vhd
+set_global_assignment -name VHDL_FILE blocos/carrier_phase_shift_90.vhd
+set_global_assignment -name VHDL_FILE blocos/align_left_24b.vhd
+set_global_assignment -name VHDL_FILE blocos/pll_18432.vhd
+set_global_assignment -name VHDL_FILE blocos/soma_canais_dac.vhd
+set_global_assignment -name BDF_FILE de2_modula.bdf
+set_global_assignment -name VHDL_FILE blocos/adc_des_24bits_r00.vhd
+set_global_assignment -name VHDL_FILE blocos/aud_clk_gen_r00.vhd
+set_global_assignment -name VHDL_FILE blocos/aud_i2c_config_r00.vhd
+set_global_assignment -name VHDL_FILE blocos/dac_ser_24bits_r00.vhd
+set_global_assignment -name VHDL_FILE blocos/i2c_master_r00.vhd
+set_global_assignment -name VHDL_FILE blocos/sin_gen.vhd
+set_global_assignment -name VECTOR_WAVEFORM_FILE de2_modula.vwf
+set_global_assignment -name VHDL_FILE blocos/AM_Mixer.vhd
+set_global_assignment -name VHDL_FILE blocos/aud_flip_flop_r00.vhd
+set_global_assignment -name VHDL_FILE blocos/Upsampler_Stereo_10bit.vhd
+set_global_assignment -name VHDL_FILE blocos/AM_Mixer_Stereo.vhd
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
